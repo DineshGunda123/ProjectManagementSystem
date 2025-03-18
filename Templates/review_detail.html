@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Review {{ review.order }} for {{ review.project.projectname }}</h2>
+
+    {% if not review.completed %}
+        <form method="post">
+            {% csrf_token %}
+
+            <label for="suggestions">Suggestions on Previous Review:</label>
+            <textarea id="suggestions" name="suggestions" required>{{ review.suggesionsonpreviouspreviousrevie }}</textarea>
+
+            <label for="algorithm">Algorithm and Block Diagram:</label>
+            <textarea id="algorithm" name="algorithm" required>{{ review.algorithmandblockdiagram }}</textarea>
+
+            <label for="datasets">Datasets:</label>
+            <textarea id="datasets" name="datasets" required>{{ review.datasets }}</textarea>
+
+            <label for="result_analysis">Result Analysis:</label>
+            <textarea id="result_analysis" name="result_analysis" required>{{ review.resultanlysis }}</textarea>
+
+            <label for="status_of_paper">Status of Paper:</label>
+            <textarea id="status_of_paper" name="status_of_paper" required>{{ review.statusofpape }}</textarea>
+
+            <label for="feedback">Feedback:</label>
+            <textarea id="feedback" name="feedback" required>{{ review.feedback }}</textarea>
+
+            <button type="submit">Submit Review</button>
+        </form>
+    {% else %}
+        <p>This review has been completed.</p>
+    {% endif %}
+</div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+    <title>Registration Page</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f2f5;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .form-container {
+            width: 100%;
+        }
+        .title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+        .form-group label {
+            font-weight: 600;
+        }
+        .sub-title {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+            color: #555;
+        }
+        .check-terms {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        .check-terms .checkbox {
+            margin-right: 10px;
+        }
+        .check-label {
+            font-size: 0.9rem;
+        }
+        .signin-link {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .signin-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .signin-link a:hover {
+            text-decoration: underline;
+        }
+        .btn.signup {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h3 class="title">Register</h3>
+            <form class="form-horizontal" action="." method="post">{% csrf_token %}
+                <div class="form-group">
+                    <label for="username">User Name</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="User Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email ID</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+                </div>
+                <h4 class="sub-title">Personal Information</h4>
+                <div class="form-group">
+                    <label for="phone">Phone No.</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <select class="form-control" id="city" name="city" required>
+                        <option value="AP">Andhra Pradesh</option>
+                        <option value="Telangana">Telangana</option>
+                    </select>
+                </div>
+                <div class="check-terms">
+                    <input type="checkbox" class="checkbox" id="terms" name="terms" required>
+                    <label for="terms" class="check-label">I agree to the terms</label>
+                </div>
+                <span class="signin-link">Already have an account? Click here to <a href="{% url 'login' %}">Login</a></span>
+                <button type="submit" class="btn signup btn-primary">Create Account</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
