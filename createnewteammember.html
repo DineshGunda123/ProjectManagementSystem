@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if item %}Edit Team Member{% else %}Create Team Member{% endif %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f2f5;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .form-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #007bff;
+        }
+        .form-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .input-group-text {
+            width: 150px;
+            text-align: left;
+            color: #007bff; /* Text color for labels */
+        }
+        .form-control {
+            border-color: #007bff; /* Border color for input fields */
+        }
+        .btn-outline-primary {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+        }
+    </style>
+    <script>
+        function check() {
+            var dm1 = document.getElementById("cat");
+            var dm2 = document.getElementById("Designation");
+            var selectedvalue = dm1.value;
+            dm2.innerHTML = "";
+            if (selectedvalue === "Webdevelopment") {
+                dm2.add(new Option("Back_end developer(jr)", "Back_end developer(jr)"));
+                dm2.add(new Option("Back_end developer(sr)", "Back_end developer(sr)"));
+                dm2.add(new Option("Frontend developer(jr)", "Frontend developer(jr)"));
+                dm2.add(new Option("Frontend developer(sr)", "Frontend developer(sr)"));
+            } else if (selectedvalue === "Appdevelopment") {
+                dm2.add(new Option("Java developer(sr)", "Java developer(sr)"));
+                dm2.add(new Option("Kotlin developer(sr)", "Kotlin developer(sr)"));
+                dm2.add(new Option("Java developer(jr)", "Java developer(jr)"));
+                dm2.add(new Option("Kotlin developer(jr)", "Kotlin developer(jr)"));
+            } else if (selectedvalue === "Ios") {
+                dm2.add(new Option("Flutter developer(sr)", "Flutter developer(sr)"));
+                dm2.add(new Option("Swift developer(sr)", "Swift developer(sr)"));
+                dm2.add(new Option("Flutter developer(jr)", "Flutter developer(jr)"));
+                dm2.add(new Option("Swift developer(jr)", "Swift developer(jr)"));
+            } else if (selectedvalue === "MobileApp") {
+                dm2.add(new Option("Android developer(sr)", "Android developer(sr)"));
+                dm2.add(new Option("iOS developer(sr)", "iOS developer(sr)"));
+                dm2.add(new Option("Android developer(jr)", "Android developer(jr)"));
+                dm2.add(new Option("iOS developer(jr)", "iOS developer(jr)"));
+            } else if (selectedvalue === "Ecommerce") {
+                dm2.add(new Option("E-commerce backend developer(sr)", "E-commerce backend developer(sr)"));
+                dm2.add(new Option("E-commerce frontend developer(sr)", "E-commerce frontend developer(sr)"));
+                dm2.add(new Option("E-commerce backend developer(jr)", "E-commerce backend developer(jr)"));
+                dm2.add(new Option("E-commerce frontend developer(jr)", "E-commerce frontend developer(jr)"));
+            } else if (selectedvalue === "Design") {
+                dm2.add(new Option("UI/UX Designer(sr)", "UI/UX Designer(sr)"));
+                dm2.add(new Option("Graphic Designer(sr)", "Graphic Designer(sr)"));
+                dm2.add(new Option("UI/UX Designer(jr)", "UI/UX Designer(jr)"));
+                dm2.add(new Option("Graphic Designer(jr)", "Graphic Designer(jr)"));
+            } else if (selectedvalue === "Research") {
+                dm2.add(new Option("Research Analyst(sr)", "Research Analyst(sr)"));
+                dm2.add(new Option("Research Assistant(sr)", "Research Assistant(sr)"));
+                dm2.add(new Option("Research Analyst(jr)", "Research Analyst(jr)"));
+                dm2.add(new Option("Research Assistant(jr)", "Research Assistant(jr)"));
+            } else if (selectedvalue === "DataAnalysis") {
+                dm2.add(new Option("Data Scientist(sr)", "Data Scientist(sr)"));
+                dm2.add(new Option("Data Analyst(sr)", "Data Analyst(sr)"));
+                dm2.add(new Option("Data Scientist(jr)", "Data Scientist(jr)"));
+                dm2.add(new Option("Data Analyst(jr)", "Data Analyst(jr)"));
+            } else if (selectedvalue === "SoftwareDevelopment") {
+                dm2.add(new Option("Full Stack Developer(sr)", "Full Stack Developer(sr)"));
+                dm2.add(new Option("Backend Developer(sr)", "Backend Developer(sr)"));
+                dm2.add(new Option("Frontend Developer(sr)", "Frontend Developer(sr)"));
+                dm2.add(new Option("Full Stack Developer(jr)", "Full Stack Developer(jr)"));
+                dm2.add(new Option("Backend Developer(jr)", "Backend Developer(jr)"));
+                dm2.add(new Option("Frontend Developer(jr)", "Frontend Developer(jr)"));
+            } else if (selectedvalue === "GameDevelopment") {
+                dm2.add(new Option("Game Developer(sr)", "Game Developer(sr)"));
+                dm2.add(new Option("Game Designer(sr)", "Game Designer(sr)"));
+                dm2.add(new Option("Game Developer(jr)", "Game Developer(jr)"));
+                dm2.add(new Option("Game Designer(jr)", "Game Designer(jr)"));
+            } else if (selectedvalue === "IoT") {
+                dm2.add(new Option("IoT Engineer(sr)", "IoT Engineer(sr)"));
+                dm2.add(new Option("IoT Developer(sr)", "IoT Developer(sr)"));
+                dm2.add(new Option("IoT Engineer(jr)", "IoT Engineer(jr)"));
+                dm2.add(new Option("IoT Developer(jr)", "IoT Developer(jr)"));
+            } else if (selectedvalue === "Blockchain") {
+                dm2.add(new Option("Blockchain Developer(sr)", "Blockchain Developer(sr)"));
+                dm2.add(new Option("Blockchain Analyst(sr)", "Blockchain Analyst(sr)"));
+                dm2.add(new Option("Blockchain Developer(jr)", "Blockchain Developer(jr)"));
+                dm2.add(new Option("Blockchain Analyst(jr)", "Blockchain Analyst(jr)"));
+            } else if (selectedvalue === "AIandML") {
+                dm2.add(new Option("AI Engineer(sr)", "AI Engineer(sr)"));
+                dm2.add(new Option("ML Engineer(sr)", "ML Engineer(sr)"));
+                dm2.add(new Option("AI Engineer(jr)", "AI Engineer(jr)"));
+                dm2.add(new Option("ML Engineer(jr)", "ML Engineer(jr)"));
+            }
+        }
+    </script>    
+</head>
+<body>
+    <div class="container">
+        <p class="form-title"><i class="fa-solid fa-circle-plus" style="color: #007bff;"></i> {% if item %}Edit Team Member{% else %}Create Team Member{% endif %}</p>
+        <p class="form-subtitle"><i class="fa-solid fa-circle-info"></i> Enter Information</p>
+        <form action="." method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Name</span>
+                <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" required>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Email</span>
+                <input type="email" class="form-control" name="email" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" required>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Address</span>
+                <input type="text" class="form-control" name="address" placeholder="Address" aria-label="Address" aria-describedby="basic-addon1" required>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Contact Number</span>
+                <input type="tel" class="form-control" name="contact" placeholder="Phone Number" aria-label="Contact Number" aria-describedby="basic-addon1" required>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Image</span>
+                <input type="file" class="form-control" name="image" aria-label="Image" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Gender</span>
+                <select class="form-select" name="gender" required>
+                    <option value="-">---</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Categories</span>
+                <select class="form-select" name="categories" id="cat" onchange="check()" required>
+                    <option value="-">---</option>
+                    <option value="Webdevelopment">Web Development</option>
+                    <option value="Appdevelopment">App Development</option>
+                    <option value="Ios">iOS</option>
+                    <option value="MobileApp">Mobile App</option>
+                    <option value="Ecommerce">E-commerce</option>
+                    <option value="Design">Design</option>
+                    <option value="Research">Research</option>
+                    <option value="DataAnalysis">Data Analysis</option>
+                    <option value="SoftwareDevelopment">Software Development</option>
+                    <option value="GameDevelopment">Game Development</option>
+                    <option value="IoT">Internet of Things (IoT)</option>
+                    <option value="Blockchain">Blockchain</option>
+                    <option value="AIandML">Artificial Intelligence (AI) and Machine Learning (ML)</option>
+                </select>
+            </div>
+            
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Designations</span>
+                <select class="form-select" name="designations" id="Designation" required>
+                    <!-- Options will be populated by JavaScript -->
+                </select>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-outline-primary">Save Info</button>
+            </div>
+            <div class="text-center mt-3">
+                <a href="{% url 'home' %}" class="btn btn-outline-primary">Go back to Dashboard</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

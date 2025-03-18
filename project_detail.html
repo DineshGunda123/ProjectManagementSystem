@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project.projectname }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .completed {
+            border-left: 5px solid #28a745;
+        }
+        .incomplete {
+            border-left: 5px solid #dc3545;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .actions {
+            margin-top: 10px;
+        }
+        .actions a {
+            margin-right: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            background-color: transparent;
+            border: 2px solid;
+            border-radius: 4px;
+        }
+        .btn-outline-info {
+            color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        .btn-outline-info:hover {
+            color: #fff;
+            background-color: #17a2b8;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Project: {{ project.projectname }}</h2>
+    <p><strong>Description:</strong> {{ project.comments }}</p>
+    <p><strong>Project Lead:</strong> {{ project.project_manager }}</p>
+    <p><strong>Project Status:</strong> {{ project_status }}</p>
+    <h3>Reviews:</h3>
+    <ul>
+        {% for review in reviews %}
+            <li class="{% if review.completed %}completed{% else %}incomplete{% endif %}">
+                <strong>Review {{ review.order }}:</strong>
+                {% if review.completed %}
+                    <div class="feedback">
+                        <strong>Feedback:</strong>
+                        <p>{{ review.feedback }}</p>
+                    </div>
+                {% else %}
+                    <p>This review is incomplete.</p>
+                    <div class="actions">
+                        <a href="{% url 'review_detail' project_id=project.id review_id=review.id %}" class="btn btn-outline-info">Complete this review</a>
+                    </div>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>
